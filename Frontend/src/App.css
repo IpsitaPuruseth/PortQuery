@@ -1,0 +1,199 @@
+/* @import "tailwindcss"; */
+
+body {
+  margin: 0;
+  background: #f4f6f8;
+  font-family:
+    Segoe UI,
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+}
+/*Container*/
+
+.container {
+  width: calc(100vw - 80px);
+  min-height: calc(100vh - 80px);
+  margin: 40px;
+  padding: 35px;
+  background: rgba(210, 210, 210, 0.779);
+  border-radius: 12px;
+  box-sizing: border-box;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/*Header*/
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+/* Command Section */
+
+.command-section {
+  margin-bottom: 30px;
+}
+
+.command-section h3 {
+  text-align: left;
+  margin-bottom: 20px;
+  color: grey;
+}
+
+.command-section label {
+  display: block;
+  margin-bottom: 8px;
+}
+.command-section input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.command-section input:focus {
+  border-color: #2563eb;
+
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.25);
+}
+/* Buttons below input */
+
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+.button-row button {
+  width: 120px;
+  height: 36px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #6b7280;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button-row button:hover {
+  background: #7797ef;
+  transform: translateY(-2px);
+}
+
+/* Information Section*/
+
+.information-section {
+  margin-top: 30px;
+}
+
+.information-section h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+textarea {
+  width: 100%;
+  height: 400px;
+  padding: 15px;
+  border: 1px solid #d1d5db;
+  box-sizing: border-box;
+  border-radius: 6px;
+  resize: none;
+  background: #fafafa;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  outline: none;
+}
+
+/*Bottom Buttons */
+
+.bottom-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+.bottom-buttons button {
+  width: 120px;
+  height: 36px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #6b7280;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bottom-buttons button:hover {
+  background: #4b5563;
+  transform: translateY(-2px);
+}
+
+.tips-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.tips-box {
+  width: 900px;
+  max-width: 95%;
+  max-height: 80vh;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tips-box h2 {
+  text-align: center;
+
+  margin-bottom: 20px;
+}
+
+.tips-box pre {
+  white-space: pre-wrap;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.tips-box button {
+  margin-top: 20px;
+  float: right;
+  padding: 10px 18px;
+  cursor: pointer;
+}

@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+dist/
+build/
+**/dist/
+**/build/
+
+# Visual Studio
+.vs/
+
+# Environment / secrets
+.env
+**/.env
+!**/.env.example
+
+# Logs
+*.log
+Backend/logfile.txt
+Backend/dnslog.txt
+
+# OS files
+Thumbs.db
+.DS_Store
