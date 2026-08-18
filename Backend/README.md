@@ -106,7 +106,3 @@ curl -X POST http://localhost:3001/api/portquery \
 - **Express.js** - Web server framework
 - **cors** - Cross-Origin Resource Sharing middleware
 - **child_process** - Node.js module for spawning the PortQry process
-
-## License
-
-ISC
