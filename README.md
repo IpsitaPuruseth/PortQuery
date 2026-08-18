@@ -1,6 +1,6 @@
 # PortQuery UI Application
 
-A modern web-based interface for Microsoft PortQryV2 with real-time command execution and output streaming.
+A modern web-based interface for Microsoft PortQryV2 that runs commands through a backend and displays the results in the browser.
 
 ## 📋 Overview
 
@@ -9,8 +9,8 @@ This application provides a user-friendly interface to run PortQuery commands an
 ## 🏗️ Architecture
 
 - **Frontend**: React + Vite (modern UI)
-- **Backend**: Node.js + Express (executes PortQryV2.exe)
-- **Communication**: Server-Sent Events (SSE) for real-time streaming
+- **Backend**: Node.js + Express (executes PortQryV2.exe via `spawn`)
+- **Communication**: HTTP request/response — the frontend sends the command as JSON (POST `/api/portquery`) and the backend returns the output and exit code as JSON
 
 ## ⚙️ Prerequisites
 
@@ -29,12 +29,10 @@ npm install
 
 ### Step 2: Configure PortQry Path
 
-Edit `Backend/.env` and set your PortQry installation path:
+Set your PortQry installation path in `Backend/server.js` via the `PORTQRY_PATH` constant:
 
-```env
-PORTQRY_PATH=PortQry.exe
-# or
-PORTQRY_PATH=C:\Program Files\PortQryV2\PortQry.exe
+```js
+const PORTQRY_PATH = 'C:\\PortQryV2\\PortQry.exe';
 ```
 
 ### Step 3: Start Backend Server
@@ -63,7 +61,7 @@ Frontend will run at `http://localhost:5173` (or the port shown in terminal)
 1. Open your browser to the frontend URL
 2. Enter a PortQry command (e.g., `portqry -n localhost -e 80`)
 3. Click "Run"
-4. View real-time output from PortQryV2
+4. View the output and exit code returned from PortQryV2
 
 ## 📝 Example Commands
 
@@ -91,8 +89,8 @@ portqry -n 192.168.1.1 -e 445
 - Test by running `PortQry.exe` in CMD
 
 **Port 3001 already in use:**
-- Change `PORT` in `Backend/.env`
-- Update `API_URL` in `Frontend/src/App.jsx`
+- Change the `PORT` constant in `Backend/server.js`
+- Update `API_URL` in `Frontend/src/App.jsx` to match
 
 ### Frontend Issues
 
@@ -110,7 +108,7 @@ portqry -n 192.168.1.1 -e 445
 ```
 PortQueryProject/
 ├── Backend/
-│   ├── server.js           # Express server with SSE streaming
+│   ├── server.js           # Express server that runs PortQry via spawn
 │   ├── package.json        # Backend dependencies
 │   ├── .env                # Configuration (PortQry path, port)
 │   └── README.md           # Backend documentation
@@ -132,11 +130,11 @@ PortQueryProject/
 
 ## 🎯 Features
 
-✅ Real-time command output streaming  
-✅ Exact CMD output display  
-✅ Loading states and error handling  
+✅ Runs PortQry commands and displays the output with exit code  
+✅ Export report with a native "Save As" dialog to choose the save location (Chrome/Edge), with a download fallback  
+✅ Loading states and error handling (30s request timeout)  
 ✅ PortQuery tips and documentation  
-✅ Command history (clear functionality)  
+✅ Clear functionality to reset the view  
 ✅ Responsive UI with Tailwind CSS  
 
 ## 📦 Dependencies
@@ -144,7 +142,6 @@ PortQueryProject/
 ### Backend
 - express: Web server
 - cors: Cross-origin support
-- dotenv: Environment configuration
 
 ### Frontend
 - react: UI framework

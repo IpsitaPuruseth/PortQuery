@@ -1,6 +1,6 @@
 # PortQuery Backend Server
 
-This is the backend server for the PortQuery UI application. It executes PortQryV2 commands and streams the output to the frontend in real-time.
+This is the backend server for the PortQuery UI application. It executes PortQryV2 commands and returns the output to the frontend as JSON.
 
 ## Prerequisites
 
@@ -15,23 +15,16 @@ This is the backend server for the PortQuery UI application. It executes PortQry
 npm install
 ```
 
-2. Install the `dotenv` package if not already installed:
-```bash
-npm install dotenv
-```
-
 ## Configuration
 
 ### Setting up PortQry Path
 
-Edit the `.env` file and set the `PORTQRY_PATH` variable to point to your PortQry.exe installation:
+Set the `PORTQRY_PATH` constant in `server.js` to point to your PortQry.exe installation:
 
-```env
-# Option 1: If PortQry.exe is in your system PATH
-PORTQRY_PATH=PortQry.exe
-
-# Option 2: Specify full path
-PORTQRY_PATH=C:\Program Files\PortQryV2\PortQry.exe
+```js
+// If PortQry.exe is in your system PATH, use 'PortQry.exe'.
+// Otherwise set the full path.
+const PORTQRY_PATH = 'C:\\PortQryV2\\PortQry.exe';
 ```
 
 ### Common PortQry Installation Paths:
@@ -41,10 +34,10 @@ PORTQRY_PATH=C:\Program Files\PortQryV2\PortQry.exe
 
 ### Port Configuration
 
-The backend server runs on port `3001` by default. You can change this in the `.env` file:
+The backend server runs on port `3001` by default. You can change this via the `PORT` constant in `server.js`:
 
-```env
-PORT=3001
+```js
+const PORT = 3001;
 ```
 
 ## Running the Server
@@ -69,7 +62,7 @@ The server will start at `http://localhost:3001`
 ### Execute PortQuery Command
 - **POST** `/api/portquery`
 - Body: `{ "command": "portqry -n localhost -e 80" }`
-- Returns: Server-Sent Events (SSE) stream with command output
+- Returns: JSON `{ command, output, exitCode }`
 
 ## Example Usage
 
@@ -90,11 +83,11 @@ curl -X POST http://localhost:3001/api/portquery \
 
 ### Error: "PortQry.exe not found"
 - Ensure PortQryV2 is installed on your system
-- Check the `PORTQRY_PATH` in the `.env` file
+- Check the `PORTQRY_PATH` constant in `server.js`
 - Verify the path by running `PortQry.exe` in CMD
 
 ### Error: "Port 3001 is already in use"
-- Change the `PORT` in `.env` to a different number
+- Change the `PORT` constant in `server.js` to a different number
 - Update the frontend `API_URL` in `Frontend/src/App.jsx` accordingly
 
 ### Error: "CORS policy"
@@ -112,8 +105,7 @@ curl -X POST http://localhost:3001/api/portquery \
 
 - **Express.js** - Web server framework
 - **cors** - Cross-Origin Resource Sharing middleware
-- **dotenv** - Environment variable management
-- **child_process** - Node.js module for spawning PortQry process
+- **child_process** - Node.js module for spawning the PortQry process
 
 ## License
 
