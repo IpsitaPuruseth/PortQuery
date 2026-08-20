@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+	<TargetFramework>net8.0</TargetFramework>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<RootNamespace>PortQueryBackend</RootNamespace>
+	<AssemblyName>PortQueryBackend</AssemblyName>
+	<!-- Embed a manifest that requests administrator rights so PortQry
+		 Local Mode commands (-local, -wport, -wpid) work. -->
+	<ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+</Project>

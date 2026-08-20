@@ -30,6 +30,10 @@ app.post('/api/portquery', (req, res) => {
 
   let trimmedCommand = command.trim();
 
+  // Strip a leading shell path prefix like '.\' or './' (users copy the
+  // PowerShell form '.\portqry ...'). The backend already knows the exe path.
+  trimmedCommand = trimmedCommand.replace(/^\.[\\/]/, '');
+
   // Normalize: fix common misspelling and ensure it starts with 'portqry'.
   trimmedCommand = trimmedCommand.replace(/^portquery/i, 'portqry');
   if (!/^portqry(\.exe)?\b/i.test(trimmedCommand)) {

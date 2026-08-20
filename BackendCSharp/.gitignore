@@ -1,0 +1,12 @@
+# .NET build output
+bin/
+obj/
+
+# User-specific / IDE
+*.user
+.vs/
+
+# Runtime logs produced by PortQry
+*.log
+dnslog.txt
+logfile.txt
